@@ -25,22 +25,17 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
 
 #[component]
 pub fn App() -> impl IntoView {
-    // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
 
     view! {
-        // injects a stylesheet into the document <head>
-        // id=leptos means cargo-leptos will hot-reload this stylesheet
+        <Title text="Mo'orea Rent Pere'o'o"/>
         <Stylesheet id="leptos" href="/pkg/mozrentpereoo.css"/>
 
-        // sets the document title
-        <Title text="Welcome to Leptos"/>
-
-        // content for this welcome page
         <Router>
             <main>
                 <Routes fallback=|| "Page not found.".into_view()>
                     <Route path=StaticSegment("") view=HomePage/>
+                    <Route path=StaticSegment("/accueil") view=HomePage/>
                 </Routes>
             </main>
         </Router>
@@ -50,12 +45,11 @@ pub fn App() -> impl IntoView {
 /// Renders the home page of your application.
 #[component]
 fn HomePage() -> impl IntoView {
-    // Creates a reactive value to update the button
     let count = RwSignal::new(0);
     let on_click = move |_| *count.write() += 1;
 
     view! {
-        <h1>"Welcome to Leptos!"</h1>
-        <button on:click=on_click>"Click Me: " {count}</button>
+        <h1>"Welcome to Mo'orea Rent Pere'o'o !"</h1>
+        <button on:click=on_click>"Touch Me : " {count}</button>
     }
 }
