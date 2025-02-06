@@ -1,12 +1,11 @@
-
-#[cfg(feature = "ssr")]
+#[cfg(feature = "server")]
 #[tokio::main]
 async fn main() {
     use axum::Router;
     use leptos::logging::log;
     use leptos::prelude::*;
     use leptos_axum::{generate_route_list, LeptosRoutes};
-    use mozrentcarscooter::app::*;
+    use mozrentpereoo::app::*;
 
     let conf = get_configuration(None).unwrap();
     let addr = conf.leptos_options.site_addr;
@@ -31,7 +30,7 @@ async fn main() {
         .unwrap();
 }
 
-#[cfg(not(feature = "ssr"))]
+#[cfg(not(feature = "server"))]
 pub fn main() {
     // no client-side main function
     // unless we want this to work with e.g., Trunk for pure client-side testing

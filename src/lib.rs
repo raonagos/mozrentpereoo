@@ -1,6 +1,6 @@
 pub mod app;
 
-#[cfg(feature = "hydrate")]
+#[cfg(feature = "web")]
 #[wasm_bindgen::prelude::wasm_bindgen]
 pub fn hydrate() {
     use crate::app::*;
