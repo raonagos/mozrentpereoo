@@ -5,6 +5,8 @@ use leptos_router::{
     StaticSegment,
 };
 
+use crate::calendar::CalendarPage;
+
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {
         <!DOCTYPE html>
@@ -51,5 +53,6 @@ fn HomePage() -> impl IntoView {
     view! {
         <h1>"Welcome to Mo'orea Rent Pere'o'o !"</h1>
         <button on:click=on_click>"Touch Me : " {count}</button>
+        <CalendarPage/>
     }
 }
