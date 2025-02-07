@@ -18,6 +18,7 @@ console_error_panic_hook = { version = "0.1", optional = true}
 tokio = { version = "1", features = ["rt-multi-thread"], optional = true }
 #
 chrono = "0.4.39"
+clap = { version = "4.5.28", features = ["derive", "env"] }
 leptos_calendar = {version = "0.1.1", path = "../leptos-calendar" }
 
 [features]

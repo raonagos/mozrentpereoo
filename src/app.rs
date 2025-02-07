@@ -5,12 +5,12 @@ use leptos_router::{
     StaticSegment,
 };
 
-use crate::calendar::CalendarPage;
+use crate::pages::*;
 
-pub fn shell(options: LeptosOptions) -> impl IntoView {
+pub fn shell_app(options: LeptosOptions) -> impl IntoView {
     view! {
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang="fr">
             <head>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -20,6 +20,24 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
             </head>
             <body>
                 <App/>
+            </body>
+        </html>
+    }
+}
+
+pub fn shell_admin_app(options: LeptosOptions) -> impl IntoView {
+    view! {
+        <!DOCTYPE html>
+        <html lang="fr">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <AutoReload options=options.clone() />
+                <HydrationScripts options/>
+                <MetaTags/>
+            </head>
+            <body>
+                <AdminApp/>
             </body>
         </html>
     }
@@ -35,24 +53,47 @@ pub fn App() -> impl IntoView {
 
         <Router>
             <main>
-                <Routes fallback=|| "Page not found.".into_view()>
-                    <Route path=StaticSegment("") view=HomePage/>
-                    <Route path=StaticSegment("/accueil") view=HomePage/>
+                <ul>
+                    <li><a href="/">"Accueil"</a></li>
+                    <li><a href="/vehicule">"Véhicules"</a></li>
+                    <li><a href="/reservation">"Réserver"</a></li>
+                </ul>
+                <Routes fallback=|| "La page n'existe pas.".into_view()>
+                    <Route path=StaticSegment("") view=IndexPage/>
+                    <Route path=StaticSegment("accueil") view=IndexPage/>
+                    <Route path=StaticSegment("vehicule") view=CarsPage/>
+                    <Route path=StaticSegment("reservation") view=ReservationPage/>
+                    <Route path=StaticSegment("termes-et-conditions") view=TermsPage/>
                 </Routes>
             </main>
         </Router>
     }
 }
 
-/// Renders the home page of your application.
 #[component]
-fn HomePage() -> impl IntoView {
-    let count = RwSignal::new(0);
-    let on_click = move |_| *count.write() += 1;
+pub fn AdminApp() -> impl IntoView {
+    provide_meta_context();
 
     view! {
-        <h1>"Welcome to Mo'orea Rent Pere'o'o !"</h1>
-        <button on:click=on_click>"Touch Me : " {count}</button>
-        <CalendarPage/>
+        <Title text="Gestionnaire | Mo'orea Rent Pere'o'o"/>
+        <Stylesheet id="leptos" href="/pkg/mozrentpereoo.css"/>
+
+        <Router>
+            <main>
+                <ul>
+                    <li><a href="/">"Accueil"</a></li>
+                    <li><a href="/vehicule">"Véhicules"</a></li>
+                    <li><a href="/reservation">"Réserver"</a></li>
+                    <li><a href="/se-connecter">"Se connecter"</a></li>
+                </ul>
+                <Routes fallback=|| "La page n'existe pas.".into_view()>
+                    <Route path=StaticSegment("") view=IndexPage/>
+                    <Route path=StaticSegment("vehicule") view=CarsPage/>
+                    <Route path=StaticSegment("se-connecter") view=SessionPage/>
+                    <Route path=StaticSegment("reservation") view=ReservationPage/>
+                    <Route path=StaticSegment("termes-et-conditions") view=TermsPage/>
+                </Routes>
+            </main>
+        </Router>
     }
 }
