@@ -1,6 +1,7 @@
 pub mod app;
 mod calendar;
-
+pub mod cli;
+mod pages;
 
 #[cfg(feature = "web")]
 #[wasm_bindgen::prelude::wasm_bindgen]
