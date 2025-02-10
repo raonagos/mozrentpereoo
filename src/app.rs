@@ -1,5 +1,5 @@
 use leptos::prelude::*;
-use leptos_meta::{provide_meta_context, MetaTags, Stylesheet, Title};
+use leptos_meta::*;
 use leptos_router::{
     components::{Route, Router, Routes},
     StaticSegment,
@@ -9,14 +9,15 @@ use crate::pages::*;
 
 pub fn shell_app(options: LeptosOptions) -> impl IntoView {
     view! {
-        <!DOCTYPE html>
+        <!DOCTYPE html> 
         <html lang="fr">
             <head>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <AutoReload options=options.clone() />
-                <HydrationScripts options/>
+                <AutoReload options=options.clone()/>
+                <HydrationScripts options=options.clone()/>
                 <MetaTags/>
+                <HashedStylesheet id="leptos" options/>
             </head>
             <body>
                 <App/>
@@ -27,14 +28,15 @@ pub fn shell_app(options: LeptosOptions) -> impl IntoView {
 
 pub fn shell_admin_app(options: LeptosOptions) -> impl IntoView {
     view! {
-        <!DOCTYPE html>
+        <!DOCTYPE html> 
         <html lang="fr">
             <head>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <AutoReload options=options.clone() />
-                <HydrationScripts options/>
+                <AutoReload options=options.clone()/>
+                <HydrationScripts options=options.clone()/>
                 <MetaTags/>
+                <HashedStylesheet id="leptos" options/>
             </head>
             <body>
                 <AdminApp/>
@@ -49,14 +51,19 @@ pub fn App() -> impl IntoView {
 
     view! {
         <Title text="Mo'orea Rent Pere'o'o"/>
-        <Stylesheet id="leptos" href="/pkg/mozrentpereoo.css"/>
 
         <Router>
             <main>
                 <ul>
-                    <li><a href="/">"Accueil"</a></li>
-                    <li><a href="/vehicule">"Véhicules"</a></li>
-                    <li><a href="/reservation">"Réserver"</a></li>
+                    <li>
+                        <a href="/">"Accueil"</a>
+                    </li>
+                    <li>
+                        <a href="/vehicule">"Véhicules"</a>
+                    </li>
+                    <li>
+                        <a href="/reservation">"Réserver"</a>
+                    </li>
                 </ul>
                 <Routes fallback=|| "La page n'existe pas.".into_view()>
                     <Route path=StaticSegment("") view=IndexPage/>
@@ -76,15 +83,22 @@ pub fn AdminApp() -> impl IntoView {
 
     view! {
         <Title text="Gestionnaire | Mo'orea Rent Pere'o'o"/>
-        <Stylesheet id="leptos" href="/pkg/mozrentpereoo.css"/>
 
         <Router>
             <main>
                 <ul>
-                    <li><a href="/">"Accueil"</a></li>
-                    <li><a href="/vehicule">"Véhicules"</a></li>
-                    <li><a href="/reservation">"Réserver"</a></li>
-                    <li><a href="/se-connecter">"Se connecter"</a></li>
+                    <li>
+                        <a href="/">"Accueil"</a>
+                    </li>
+                    <li>
+                        <a href="/vehicule">"Véhicules"</a>
+                    </li>
+                    <li>
+                        <a href="/reservation">"Réserver"</a>
+                    </li>
+                    <li>
+                        <a href="/se-connecter">"Se connecter"</a>
+                    </li>
                 </ul>
                 <Routes fallback=|| "La page n'existe pas.".into_view()>
                     <Route path=StaticSegment("") view=IndexPage/>

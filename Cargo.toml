@@ -7,7 +7,7 @@ edition = "2021"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-axum = { version = "0.7", optional = true }
+axum = { version = "0.7", optional = true, features = ["macros"] }
 leptos = { version = "0.7.0" }
 leptos_meta = { version = "0.7.0" }
 leptos_router = { version = "0.7.0" }
@@ -18,8 +18,10 @@ console_error_panic_hook = { version = "0.1", optional = true}
 tokio = { version = "1", features = ["rt-multi-thread"], optional = true }
 #
 chrono = "0.4.39"
+leptos_calendar = "0.1.2"
 clap = { version = "4.5.28", features = ["derive", "env"] }
-leptos_calendar = {version = "0.1.1", path = "../leptos-calendar" }
+sqlx = { version = "0.8.2", features = ["runtime-tokio", "sqlite"], optional = true }
+serde = { version = "1.0.217", features = ["derive"] }
 
 [features]
 web = [
@@ -29,6 +31,7 @@ web = [
 ]
 server = [
     "dep:axum",
+    "dep:sqlx",
     "dep:tokio",
     "dep:leptos_axum",
     "leptos/ssr",
