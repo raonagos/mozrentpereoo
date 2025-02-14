@@ -4,7 +4,6 @@ mod entities;
 
 pub use entities::*;
 
-use crate::AppResult;
 #[cfg(feature = "server")]
 use axum::async_trait;
 
@@ -12,5 +11,5 @@ use axum::async_trait;
 #[async_trait]
 pub trait Database: std::fmt::Debug + Send + Sync {
     // cars
-    async fn get_cars(&self) -> AppResult<Vec<Car>>;
+    async fn get_cars(&self) -> crate::AppResult<Vec<Car>>;
 }
