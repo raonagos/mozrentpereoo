@@ -22,7 +22,7 @@ pub fn CalendarPage() -> impl IntoView {
 
     view! {
         <CalendarRoot config=calendar_config>
-            <Calendar date=selected_date class="border-2 border-white bg-slate-50" />
+            <Calendar date=selected_date class="border-2 border-white bg-slate-50"/>
         </CalendarRoot>
     }
 }
